@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 #define _RMCterm "RMC"
 #define _GGAterm "GGA"
@@ -172,7 +173,7 @@ bool TinyGPSPlus::endOfTermHandler()
   // If it's the checksum term, and the checksum checks out, commit
   if (isChecksumTerm)
   {
-    byte checksum = 16 * fromHex(term[0]) + fromHex(term[1]);
+    uint8_t checksum = 16 * fromHex(term[0]) + fromHex(term[1]);
     if (checksum == parity)
     {
       passedChecksumCount++;
